@@ -19,7 +19,6 @@ private:
     double finalMedian;
 
 public:
-    // --- Rule of Three ---
     Person() : exam(0), finalAverage(0.0), finalMedian(0.0) {}
 
     Person(const Person& other)
@@ -40,8 +39,6 @@ public:
     }
 
     ~Person() {}
-
-    // --- Methods ---
     friend istream& operator>>(istream& in, Person& p) {
         cout << "Enter your first and last name: ";
         in >> p.name >> p.surname;
@@ -74,11 +71,9 @@ public:
             return;
         }
 
-        // Average
         double avg = accumulate(homework.begin(), homework.end(), 0.0) / homework.size();
         finalAverage = 0.4 * avg + 0.6 * exam;
 
-        // Median
         vector<int> sortedHW = homework;
         sort(sortedHW.begin(), sortedHW.end());
         double median;
@@ -109,7 +104,6 @@ public:
     string getSurname() const { return surname; }
 };
 
-// --- Read from file ---
 vector<Person> readFromFile(const string& filename) {
     vector<Person> students;
     ifstream file(filename);
@@ -119,7 +113,7 @@ vector<Person> readFromFile(const string& filename) {
     }
 
     string header;
-    getline(file, header); // пропускаємо заголовок
+    getline(file, header); 
 
     while (!file.eof()) {
         Person p;
